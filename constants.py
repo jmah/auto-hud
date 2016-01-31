@@ -6,6 +6,7 @@ C = {
         'weather',
         'birthdays',
         'chores',
+        'muni',
         'noConnection',
     ],
 
@@ -19,6 +20,9 @@ C = {
 
     'choresPollTime': 1000 * 60,
     'choresUrl': '/chore',
+
+    'muniPollTime': 1000 * 60,
+    'muniUrl': 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId=15728',
 
     'subwayPollTime': 1000 * 60,
     'subwayUrl': '/mta-service-status',

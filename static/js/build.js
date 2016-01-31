@@ -193,6 +193,40 @@ window.AutoHUDController = {
       precip: Math.round(day.precipProbability * 100)
     };
   },
+  muniGetter: function() {
+    return $.ajax(C.muniUrl, {
+      type: "GET",
+      dataType: "xml",
+      success: (function(_this) {
+        return function(data) {
+          return _this.parseMuni(data);
+        };
+      })(this)
+    });
+  },
+  parseMuni: function(data) {
+    var $d = $(data);
+
+    var lineData = [];
+
+    $d.find("predictions").each(function() {
+      var $predictions = $(this);
+      var routeCode = $predictions.attr("routeTag");
+      $predictions.find("prediction").each(function() {
+        var $pred = $(this);
+        var seconds = parseInt($pred.attr("seconds"));
+        lineData.push({seconds: seconds, routeCode: routeCode});
+      });
+    });
+
+    lineData.sort(function(l1, l2) {
+      return l1.seconds - l2.seconds;
+    });
+
+    return this.model.set({
+      muni: lineData.slice(0, 4)
+    });
+  },
   subwayGetter: function() {
     var d, day, hour;
     d = new Date();

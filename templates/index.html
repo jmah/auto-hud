@@ -92,6 +92,24 @@
 			<% } %>
 		</script>
 
+		<script id="muni-template" type="text/template">
+			<% if (d.muni) { %>
+				<div class="hud-section">
+					Castro Station Inbound
+					<br>
+					<% _.each(d.muni, function(line, index) { %>
+						<%= (index > 0) ? ', ' : '' %>
+						<%= line.routeCode %>
+						<% if (Math.round(line.seconds / 60) == 0) { %>
+							now
+						<% } else { %>
+							in <%= Math.round(line.seconds / 60) %>m
+						<% } %>
+					<% }) %>
+				</div>
+			<% } %>
+		</script>
+
 		<script id="subway-template" type="text/template">
 			<% if (d.subway) { %>
 				<ul class="hud-section hud-section-subway">
