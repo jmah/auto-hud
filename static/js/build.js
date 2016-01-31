@@ -174,8 +174,11 @@ window.AutoHUDController = {
     });
   },
   formatTemperature: function(temperature) {
-    temperature = Math.round(temperature);
-    return "<span class=\"degree\">" + temperature + "</span>\n<span class=\"degree-symbol\">º</span>";
+    var displayF = Math.round(temperature);
+	var celcius = (temperature - 32) * 5 / 9;
+	var displayC = Math.round(celcius * 2) / 2;
+    return "<span class=\"degree\">" + displayF + "</span>\n<span class=\"degree-symbol\">ºF</span>" +
+		" / <span class=\"degree\">" + displayC + "</span>\n<span class=\"degree-symbol\">ºC</span>";
   },
   formatDayWeather: function(day, tomorrow) {
     if (tomorrow == null) {
