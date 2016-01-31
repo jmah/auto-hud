@@ -6,7 +6,6 @@ C = {
         'weather',
         'birthdays',
         'chores',
-        'subway',
         'noConnection',
     ],
 
