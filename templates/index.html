@@ -36,10 +36,11 @@
 			<% if (d.weather) { %>
 				<ul class="hud-section hud-section-weather">
 					<li class="hud-section-weather-current">
-						<%= d.weather.current.temperature %>, <%= d.weather.current.summary %>
+						<%= d.weather.current.summary %>
 						<% if (d.weather.current.icon) { %>
 							<span class="wi wi-forecast-io-<%= d.weather.current.icon %>"></span>
 						<% } %>
+						<%= d.weather.current.temperature %>
 					</li>
 					<li class="hud-section-weather-preview">
 							<% if (d.weather.preview.tomorrow) { %>
