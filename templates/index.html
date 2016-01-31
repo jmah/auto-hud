@@ -43,18 +43,11 @@
 						<%= d.weather.current.temperature %>
 					</li>
 					<li class="hud-section-weather-preview">
-							<% if (d.weather.preview.tomorrow) { %>
-								<span class="hud-section-weather-line">
-									Tomorrow:
-									<%= d.weather.preview.high %>
-								</span>
-								<span class="hud-section-weather-line">
-									<%= d.weather.preview.summary %>
-								</span>
-							<% } else { %>
-								<span class="hud-section-weather-line">
-									<%= d.weather.preview.summary %>
-								</span>
+						<% if (d.weather.preview.tomorrow) { %>
+							<span class="hud-section-weather-line">
+								Tomorrow:
+								<%= d.weather.preview.high %>
+							</span>
 						<% } %>
 						<span class="hud-section-weather-line">
 							<%= d.weather.preview.precip %>% chance of rain
