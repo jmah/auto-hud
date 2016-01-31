@@ -176,7 +176,7 @@ window.AutoHUDController = {
   formatTemperature: function(temperature) {
     var displayF = Math.round(temperature);
 	var celcius = (temperature - 32) * 5 / 9;
-	var displayC = Math.round(celcius * 2) / 2;
+	var displayC = Math.round(celcius);
     return "<span class=\"degree\">" + displayF + "</span>\n<span class=\"degree-symbol\">ºF</span>" +
 		" / <span class=\"degree\">" + displayC + "</span>\n<span class=\"degree-symbol\">ºC</span>";
   },
