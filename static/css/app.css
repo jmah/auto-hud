@@ -2936,7 +2936,7 @@ body {
   padding-right: 3px;
   padding-left: 25px;
   background: #000;
-  color: #aaa;
+  color: #ddd;
   font-family: helvetica_neue;
   font-size: 40px;
   font-weight: 200;
@@ -2986,7 +2986,7 @@ body {
   font-family: arial; }
 .hud-section-time h2 {
   margin-top: 10px;
-  color: #aaa;
+  color: #ddd;
   font-size: 30px; }
 
 .hud-section-weather .degree-symbol {
@@ -3002,7 +3002,7 @@ body {
   width: 40px;
   height: 40px;
   margin-left: 0.3em;
-  border: 2px solid #aaa;
+  border: 2px solid #ddd;
   border-radius: 50%;
   text-align: center;
   font-size: 0.7em;
