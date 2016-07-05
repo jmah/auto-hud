@@ -1,5 +1,5 @@
 window.AutoHUD = {
-  versionPollTime: 5000,
+  versionPollTime: 60 * 1000,
   init: function(params) {
     window.C = params.C;
     this.model = AutoHUDModel;
