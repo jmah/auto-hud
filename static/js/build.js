@@ -188,8 +188,11 @@ window.AutoHUDController = {
     return this.model.set(updates);
   },
   formatTemperature: function(temperature) {
-    temperature = Math.round(temperature);
-    return "<span class=\"degree\">" + temperature + "</span>\n<span class=\"degree-symbol\">º</span>";
+    var celcius, displayC, displayF;
+    displayF = Math.round(temperature);
+    celcius = (temperature - 32) * 5 / 9;
+    displayC = Math.round(celcius);
+    return "<span class=\"degree\">" + displayF + "</span>\n<span class=\"degree-symbol\">ºF</span>\n/\n<span class=\"degree\">" + displayC + "</span>\n<span class=\"degree-symbol\">ºC</span>";
   },
   formatDayWeather: function(day, tomorrow) {
     if (tomorrow == null) {
