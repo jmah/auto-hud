@@ -57,6 +57,22 @@
 			<% } %>
 		</script>
 
+		<script id="weather2-template" type="text/template">
+			<% if (d.weather2) { %>
+				<ul class="hud-section hud-section-weather">
+					<li class="hud-section-weather-current" style="font-size: 110%">
+						<%= d.weather2.title %>:
+						<%= d.weather2.current.summary %>
+						<% if (d.weather2.current.icon) { %>
+							<span class="wi wi-forecast-io-<%= d.weather2.current.icon %>"></span>
+						<% } %>
+						<%= d.weather2.current.temperature %>,
+						<%= d.weather2.preview.precip %>%
+					</li>
+				</div>
+			<% } %>
+		</script>
+
 		<script id="birthdays-template" type="text/template">
 			<% if (d.birthdays && d.birthdays.length) { %>
 				<ul class="hud-section hud-section-birthdays">

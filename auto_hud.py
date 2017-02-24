@@ -11,6 +11,9 @@ from localsettings import BIRTHDAYS
 from localsettings import CHORES
 from localsettings import FORECASTIO_API_KEY
 from localsettings import FORECASTIO_LAT_LONG
+from localsettings import FORECASTIO_LAT_LONG2
+from localsettings import FORECASTIO_TITLE
+from localsettings import FORECASTIO_TITLE2
 
 # general settings
 from constants import C
@@ -26,6 +29,9 @@ def index_route(params={}):
       'C': C,
       'forecastioApiKey': FORECASTIO_API_KEY,
       'forecastioLatLong': FORECASTIO_LAT_LONG,
+      'forecastioLatLong2': FORECASTIO_LAT_LONG2,
+      'forecastioTitle': FORECASTIO_TITLE,
+      'forecastioTitle2': FORECASTIO_TITLE2,
     })
 
 @app.route('/mta-service-status')

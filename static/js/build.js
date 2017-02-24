@@ -1,5 +1,5 @@
 window.AutoHUD = {
-  versionPollTime: 60 * 1000,
+  versionPollTime: 5000,
   init: function(params) {
     window.C = params.C;
     this.model = AutoHUDModel;
@@ -143,7 +143,20 @@ window.AutoHUDController = {
     url = "" + C.weatherUrl + (this.model.get("forecastioApiKey")) + "/" + (this.model.get("forecastioLatLong"));
     return $.getJSON(url + "?callback=?", (function(_this) {
       return function(data) {
-        return _this.formatWeather(data);
+        return _this.formatWeather("weather", data, _this.model.get("forecastioTitle"));
+      };
+    })(this));
+  },
+  weather2Getter: function() {
+    var url;
+    if (this.useTestWeatherData) {
+      this.formatWeather(weatherData);
+      return;
+    }
+    url = "" + C.weatherUrl + (this.model.get("forecastioApiKey")) + "/" + (this.model.get("forecastioLatLong2"));
+    return $.getJSON(url + "?callback=?", (function(_this) {
+      return function(data) {
+        return _this.formatWeather("weather2", data, _this.model.get("forecastioTitle2"));
       };
     })(this));
   },
@@ -153,9 +166,10 @@ window.AutoHUDController = {
   	current: 75º, rain
   	today: 65º-77º, rain in the afternoon
    */
-  formatWeather: function(data) {
-    var dayIndex, preview, weather;
+  formatWeather: function(key, data, title) {
+    var dayIndex, preview, updates, weather;
     weather = {
+      title: title,
       current: {},
       preview: {}
     };
@@ -169,16 +183,13 @@ window.AutoHUDController = {
     }
     preview = data.daily.data[dayIndex];
     weather.preview = this.formatDayWeather(preview, dayIndex);
-    return this.model.set({
-      weather: weather
-    });
+    updates = {};
+    updates[key] = weather;
+    return this.model.set(updates);
   },
   formatTemperature: function(temperature) {
-    var displayF = Math.round(temperature);
-	var celcius = (temperature - 32) * 5 / 9;
-	var displayC = Math.round(celcius);
-    return "<span class=\"degree\">" + displayF + "</span>\n<span class=\"degree-symbol\">ºF</span>" +
-		" / <span class=\"degree\">" + displayC + "</span>\n<span class=\"degree-symbol\">ºC</span>";
+    temperature = Math.round(temperature);
+    return "<span class=\"degree\">" + temperature + "</span>\n<span class=\"degree-symbol\">º</span>";
   },
   formatDayWeather: function(day, tomorrow) {
     if (tomorrow == null) {
@@ -192,40 +203,6 @@ window.AutoHUDController = {
       tomorrow: tomorrow,
       precip: Math.round(day.precipProbability * 100)
     };
-  },
-  muniGetter: function() {
-    return $.ajax(C.muniUrl, {
-      type: "GET",
-      dataType: "xml",
-      success: (function(_this) {
-        return function(data) {
-          return _this.parseMuni(data);
-        };
-      })(this)
-    });
-  },
-  parseMuni: function(data) {
-    var $d = $(data);
-
-    var lineData = [];
-
-    $d.find("predictions").each(function() {
-      var $predictions = $(this);
-      var routeCode = $predictions.attr("routeTag");
-      $predictions.find("prediction").each(function() {
-        var $pred = $(this);
-        var seconds = parseInt($pred.attr("seconds"));
-        lineData.push({seconds: seconds, routeCode: routeCode});
-      });
-    });
-
-    lineData.sort(function(l1, l2) {
-      return l1.seconds - l2.seconds;
-    });
-
-    return this.model.set({
-      muni: lineData.slice(0, 4)
-    });
   },
   subwayGetter: function() {
     var d, day, hour;

@@ -91,7 +91,20 @@ window.AutoHUDController = {
 		# to use test data, comment out the `getJSON` and add:
 		# @formatWeather(weatherData)
 		$.getJSON("#{url}?callback=?", (data) =>
-			@formatWeather(data)
+			@formatWeather("weather", data, @model.get("forecastioTitle"))
+		)
+
+	weather2Getter: ->
+		if @useTestWeatherData
+			@formatWeather(weatherData)
+			return
+
+		url = "#{C.weatherUrl}#{@model.get("forecastioApiKey")}/#{@model.get("forecastioLatLong2")}"
+
+		# to use test data, comment out the `getJSON` and add:
+		# @formatWeather(weatherData)
+		$.getJSON("#{url}?callback=?", (data) =>
+			@formatWeather("weather2", data, @model.get("forecastioTitle2"))
 		)
 
 	###
@@ -99,8 +112,9 @@ window.AutoHUDController = {
 	current: 75º, rain
 	today: 65º-77º, rain in the afternoon
 	###
-	formatWeather: (data) ->
+	formatWeather: (key, data, title) ->
 		weather = {
+			title: title
 			current: {}
 			preview: {}
 		}
@@ -119,7 +133,9 @@ window.AutoHUDController = {
 		preview = data.daily.data[dayIndex]
 		weather.preview = @formatDayWeather(preview, dayIndex)
 
-		@model.set({weather: weather})
+		updates = {}
+		updates[key] = weather
+		@model.set(updates)
 
 	formatTemperature: (temperature) ->
 		temperature = Math.round(temperature)

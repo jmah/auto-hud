@@ -4,6 +4,7 @@ C = {
     'sections': [
         'time',
         'weather',
+        'weather2',
         'birthdays',
         'chores',
         #'muni',
@@ -12,7 +13,8 @@ C = {
 
     'timePollTime': 10,
 
-    'weatherPollTime': 1000 * 60 * 5,
+    'weatherPollTime': 1000 * 60 * 10,
+    'weather2PollTime': 1000 * 60 * 10,
     'weatherUrl': 'https://api.forecast.io/forecast/',
 
     'birthdaysPollTime': 1000 * 60,
