@@ -49,9 +49,11 @@
 								<%= d.weather.preview.high %>
 							</span>
 						<% } %>
-						<span class="hud-section-weather-line">
-							<%= d.weather.preview.precip %>% chance of rain
-						</span>
+						<% if (d.weather.preview.precip > 0) { %>
+							<span class="hud-section-weather-line">
+								<%= d.weather.preview.precip %>% chance of rain
+							</span>
+						<% } %>
 					</li>
 				</div>
 			<% } %>
@@ -66,8 +68,10 @@
 						<% if (d.weather2.current.icon) { %>
 							<span class="wi wi-forecast-io-<%= d.weather2.current.icon %>"></span>
 						<% } %>
-						<%= d.weather2.current.temperature %>,
-						<%= d.weather2.preview.precip %>%
+						<%= d.weather2.current.temperature %>
+						<% if (d.weather2.preview.precip > 0) { %>
+							(<%= d.weather2.preview.precip %>%)
+						<% } %>
 					</li>
 				</div>
 			<% } %>
