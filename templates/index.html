@@ -17,7 +17,7 @@
 			<% if (d.time || d.date) { %>
 				<div class="hud-section hud-section-time">
 					<% if (d.time) { %>
-						<h1>
+						<h1 onclick="document.documentElement.webkitRequestFullscreen()">
 							<%= d.time.hours %>
 							<span class="colon">:</span>
 							<%= d.time.minutes %>

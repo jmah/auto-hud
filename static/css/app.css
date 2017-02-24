@@ -2931,6 +2931,10 @@ table {
   font-style: normal;
   src: url("../fonts/HelveticaNeue-Light.eot");
   src: url("../fonts/HelveticaNeue-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/HelveticaNeue-Light.woff") format("woff"), url("../fonts/HelveticaNeue-Light.ttf") format("truetype"), url("../fonts/HelveticaNeue-Light.svg#helvetica_neue") format("svg"); }
+html,
+body {
+  height: 100%; }
+
 body {
   padding-top: 22px;
   padding-right: 3px;
