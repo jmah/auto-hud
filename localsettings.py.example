@@ -2,6 +2,8 @@
 # swap the css, js, or templates
 VERSION = "0.000"
 
+TIMEZONE = 'UTC'
+
 # your info for forecast.io
 FORECASTIO_API_KEY = "<your api key>"
 FORECASTIO_LAT_LONG = "40.676423,-73.980488"

@@ -3,10 +3,12 @@ from flask import render_template
 from flask import jsonify
 from flask import Response
 from datetime import datetime
+import pytz
 import requests
 
 # secret settings
 from localsettings import VERSION
+from localsettings import TIMEZONE
 from localsettings import BIRTHDAYS
 from localsettings import CHORES
 from localsettings import MENU
@@ -21,9 +23,11 @@ from constants import C
 
 app = Flask(__name__)
 
+tz = pytz.timezone(TIMEZONE)
+
 @app.route('/')
 def index_route(params={}):
-    today = datetime.today()
+    today = datetime.now(tz)
 
     return render_template('index.html', params = {
       'version': VERSION,
@@ -42,7 +46,7 @@ def mta_service_status():
 
 @app.route('/birthdays')
 def birthdays():
-    today = datetime.today()
+    today = datetime.now(tz)
     today_index = (today.month, today.day)
     today_birthdays = BIRTHDAYS.get(today_index)
     year = today.year
@@ -74,7 +78,7 @@ def birthdays():
 
 @app.route('/menu')
 def menu():
-    today = datetime.today()
+    today = datetime.now(tz)
     res = []
     weekday = C['daysPy'][today.weekday()]
     weekday_menu = MENU.get(weekday)
@@ -89,7 +93,7 @@ def menu():
 
 @app.route('/chores')
 def chores():
-    today = datetime.today()
+    today = datetime.now(tz)
     res = []
     weekday = C['daysPy'][today.weekday()]
     weekday_chores = CHORES.get(weekday)
