@@ -3001,6 +3001,11 @@ body {
   float: left;
   width: 100%; }
 
+.hud-section-menu {
+  font-size: 80%; }
+.hud-section-menu li {
+  margin-top: 0; }
+
 .hud-section-subway .hud-section-subway-line {
   display: inline-block;
   width: 40px;

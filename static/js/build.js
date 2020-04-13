@@ -124,6 +124,16 @@ window.AutoHUDController = {
       })(this)
     });
   },
+  menuGetter: function() {
+    return $.ajax("/menu", {
+      type: "GET",
+      success: (function(_this) {
+        return function(data) {
+          return _this.model.set(data);
+        };
+      })(this)
+    });
+  },
   choresGetter: function() {
     return $.ajax("/chores", {
       type: "GET",

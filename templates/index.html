@@ -90,6 +90,22 @@
 			<% } %>
 		</script>
 
+		<script id="menu-template" type="text/template">
+			<% if (d.menu && d.menu.length) { %>
+				<ul class="hud-section hud-section-menu">
+					<% _.each((d.menu), function(item) { %>
+						<li>
+							<% if (item.icon) { %>
+								<span class="fa fa-<%= item.icon %>"></span>
+							<% } %>
+							<%= item.text %>
+							<span class="fa fa-cutlery"></span>
+						</li>
+					<% }) %>
+				</ul>
+			<% } %>
+		</script>
+
 		<script id="chores-template" type="text/template">
 			<% if (d.chores && d.chores.length) { %>
 				<ul class="hud-section hud-section-chores">

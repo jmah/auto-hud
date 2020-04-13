@@ -9,6 +9,7 @@ import requests
 from localsettings import VERSION
 from localsettings import BIRTHDAYS
 from localsettings import CHORES
+from localsettings import MENU
 from localsettings import FORECASTIO_API_KEY
 from localsettings import FORECASTIO_LAT_LONG
 from localsettings import FORECASTIO_LAT_LONG2
@@ -69,6 +70,21 @@ def birthdays():
 
     return jsonify({
         'birthdays': res
+    })
+
+@app.route('/menu')
+def menu():
+    today = datetime.today()
+    res = []
+    weekday = C['daysPy'][today.weekday()]
+    weekday_menu = MENU.get(weekday)
+
+    if weekday_menu != None:
+        for meal in weekday_menu:
+            res.append(meal)
+
+    return jsonify({
+        'menu': res
     })
 
 @app.route('/chores')

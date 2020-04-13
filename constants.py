@@ -6,6 +6,7 @@ C = {
         'weather',
         #'weather2',
         'birthdays',
+        'menu',
         'chores',
         #'muni',
         'noConnection',
@@ -19,6 +20,9 @@ C = {
 
     'birthdaysPollTime': 1000 * 60,
     'birthdaysUrl': '/birthdays',
+
+    'menuPollTime': 1000 * 60,
+    'menuUrl': '/menu',
 
     'choresPollTime': 1000 * 60,
     'choresUrl': '/chores',
