@@ -4,7 +4,7 @@ C = {
     'sections': [
         'time',
         'weather',
-        'weather2',
+        #'weather2',
         'birthdays',
         'chores',
         #'muni',
