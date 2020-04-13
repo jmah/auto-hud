@@ -21,7 +21,7 @@ C = {
     'birthdaysUrl': '/birthdays',
 
     'choresPollTime': 1000 * 60,
-    'choresUrl': '/chore',
+    'choresUrl': '/chores',
 
     'muniPollTime': 1000 * 30,
     'muniUrl': 'http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId=15728',
